@@ -1,0 +1,41 @@
+FUNCTION number_pairs() : INTEGER
+VAR
+    n : INTEGER;
+BEGIN
+    REPEAT
+        Write("Enter the number of pairs of vectors :");
+        Read(n);
+    UNTIL (n <= 0)
+    RETURN n ;
+END
+
+PROCEDURE dot_product(v1,v2 : ARRAY_OF FLOAT, VAR ps : FLOAT)
+BEGIN
+    ps := v1[0] * v2[0] + v1[1] * v2[1];
+END
+
+ALGORITHM Dot product
+VAR
+    i,j,n : INTEGER;
+    v1,v2 : ARRAY_OF FLOAT[2];
+    ps : FLOAT;
+BEGIN
+    // Read number of pairs of vectors 
+    n := number_pairs();
+    // 
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        // Read the pair of vectors
+        Write("enter pair of vectors number: ", i); 
+        FOR j FROM 0 TO 1 STEP 1  DO
+            Read(v1[j]);
+        END_FOR
+        FOR j FROM 0 TO 1 STEP 1  DO
+            Read(v2[j]);
+        END_FOR
+        // Check if pair of vectors are orthogonal
+        dot_product(v1, v2, ps);
+        IF (ps = 0) THEN
+            Write("These vectors are orthogonal");
+        END_IF        
+    END_FOR
+END
